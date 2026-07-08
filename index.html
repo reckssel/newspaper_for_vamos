@@ -8,14 +8,53 @@
     <script src="js/index.js"></script>
 </head>
 <body>
+    
+  <div class="page">
+ 
     <header>
-        <div></div>
+      <div class="logo" data-de="Logo" data-en="Logo" data-es="Logo">Logo</div>
+      <nav>
+        <ul>
+          <li><a href="#" data-de="Home" data-en="Home" data-es="Inicio">Home</a></li>
+          <li><a href="#" data-de="Argentinien" data-en="Argentina" data-es="Argentina">Argentinien</a></li>
+          <li><a href="#" data-de="Spanien" data-en="Spain" data-es="España">Spanien</a></li>
+          <li class="lang-switch">
+            <button class="lang-btn" type="button" data-de="Deutsch ▾" data-en="English ▾" data-es="Español ▾">Deutsch ▾</button>
+            <ul class="lang-menu">
+              <li><a href="#" data-lang="de">Deutsch</a></li>
+              <li><a href="#" data-lang="en">English</a></li>
+              <li><a href="#" data-lang="es">Español</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </header>
+ 
+    <section class="ticker">
+      <span class="ticker-label">Breaking News</span>
+      <button id="prevBtn" aria-label="Vorherige Meldung">&lt;</button>
+      <span class="ticker-text" id="tickerText">Lade News...</span>
+      <button id="nextBtn" aria-label="Nächste Meldung">&gt;</button>
+    </section>
+ 
     <main>
-
+      <div class="box" data-de="Inhalt" data-en="Content" data-es="Contenido">Inhalt</div>
+ 
+      <div class="content-lines">
+        <p data-de="Zeile 1" data-en="Line 1" data-es="Línea 1">Zeile 1</p>
+        <p data-de="Zeile 2" data-en="Line 2" data-es="Línea 2">Zeile 2</p>
+        <p data-de="Zeile 3" data-en="Line 3" data-es="Línea 3">Zeile 3</p>
+        <p data-de="Zeile 4" data-en="Line 4" data-es="Línea 4">Zeile 4</p>
+        <p data-de="Zeile 5" data-en="Line 5" data-es="Línea 5">Zeile 5</p>
+      </div>
     </main>
-    <footer>
-
+ 
+    <footer data-de="Footer" data-en="Footer" data-es="Pie de página">
+      Footer
     </footer>
+ 
+  </div>
+ 
+
 </body>
 </html>
