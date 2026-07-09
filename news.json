@@ -1,7 +1,92 @@
 [
-  { "title": "Regierung kündigt neue Wirtschaftsreformen an", "image": "images/news1.jpg" },
-  { "title": "Wetterdienst warnt vor Unwetter am Wochenende", "image": "images/news2.jpg" },
-  { "title": "Neue Studie zeigt Fortschritte bei Klimaschutz", "image": "images/news3.jpg" },
-  { "title": "Fußball: Überraschungssieg im Pokalfinale", "image": "images/news4.jpg" },
-  { "title": "Technologie: Neuer Durchbruch bei Batterien", "image": "images/news5.jpg" }
+  {
+    "category": "argentina",
+    "title": {
+      "de": "Regierung kündigt neue Wirtschaftsreformen an",
+      "en": "Government announces new economic reforms",
+      "es": "El gobierno anuncia nuevas reformas económicas"
+    },
+    "summary": {
+      "de": "Die argentinische Regierung hat ein Maßnahmenpaket vorgestellt, das die Wirtschaft in den kommenden Monaten stärken soll.",
+      "en": "Argentina's government presented a package of measures intended to strengthen the economy in the coming months.",
+      "es": "El gobierno argentino presentó un paquete de medidas destinado a fortalecer la economía en los próximos meses."
+    },
+    "image": "images/news1.jpg",
+    "date": "2026-07-09T08:15:00"
+  },
+  {
+    "category": "spain",
+    "title": {
+      "de": "Wetterdienst warnt vor Unwetter am Wochenende",
+      "en": "Weather service warns of storms this weekend",
+      "es": "El servicio meteorológico advierte de tormentas este fin de semana"
+    },
+    "summary": {
+      "de": "Für Spanien werden ab Samstag Starkregen und Sturmböen erwartet. Behörden raten zur Vorsicht in betroffenen Regionen.",
+      "en": "Heavy rain and gusts of wind are expected in Spain from Saturday. Authorities advise caution in affected regions.",
+      "es": "Se esperan lluvias intensas y ráfagas de viento en España a partir del sábado. Las autoridades piden precaución."
+    },
+    "image": "images/news2.jpg",
+    "date": "2026-07-09T09:40:00"
+  },
+  {
+    "category": "argentina",
+    "title": {
+      "de": "Neue Studie zeigt Fortschritte bei Klimaschutz",
+      "en": "New study shows progress on climate protection",
+      "es": "Un nuevo estudio muestra avances en la protección del clima"
+    },
+    "summary": {
+      "de": "Forscher in Argentinien berichten von deutlich gesunkenen Emissionswerten in mehreren Industriezweigen.",
+      "en": "Researchers in Argentina report significantly lower emission levels across several industries.",
+      "es": "Investigadores en Argentina informan de niveles de emisiones notablemente más bajos en varios sectores."
+    },
+    "image": "images/news3.jpg",
+    "date": "2026-07-09T10:05:00"
+  },
+  {
+    "category": "spain",
+    "title": {
+      "de": "Fußball: Überraschungssieg im Pokalfinale",
+      "en": "Football: Surprise win in the cup final",
+      "es": "Fútbol: Victoria sorpresa en la final de la copa"
+    },
+    "summary": {
+      "de": "Der spanische Außenseiter setzte sich völlig unerwartet gegen den Favoriten durch und sorgt für Jubel.",
+      "en": "The Spanish underdog unexpectedly beat the favorite, sparking wild celebrations.",
+      "es": "El equipo español menos favorito venció inesperadamente al favorito, provocando gran euforia."
+    },
+    "image": "images/news4.jpg",
+    "date": "2026-07-09T11:20:00"
+  },
+  {
+    "category": "argentina",
+    "title": {
+      "de": "Technologie: Neuer Durchbruch bei Batterien",
+      "en": "Technology: New breakthrough in battery development",
+      "es": "Tecnología: Nuevo avance en el desarrollo de baterías"
+    },
+    "summary": {
+      "de": "Ein neues Material soll Ladezeiten drastisch verkürzen und die Lebensdauer von Akkus verlängern.",
+      "en": "A new material is said to drastically reduce charging times and extend battery life.",
+      "es": "Un nuevo material promete reducir drásticamente los tiempos de carga y alargar la vida útil de las baterías."
+    },
+    "image": "images/news5.jpg",
+    "date": "2026-07-09T12:00:00"
+  },
+  {
+    "category": "spain",
+    "title": {
+      "de": "Madrid plant neue Metro-Linie",
+      "en": "Madrid plans new metro line",
+      "es": "Madrid planea una nueva línea de metro"
+    },
+    "summary": {
+      "de": "Die Stadtverwaltung kündigte den Bau einer neuen Linie an, die zwei bislang schlecht angebundene Stadtteile verbindet.",
+      "en": "The city administration announced construction of a new line connecting two previously poorly served districts.",
+      "es": "El ayuntamiento anunció la construcción de una nueva línea que conectará dos barrios hasta ahora mal comunicados."
+    },
+    "image": "images/news6.jpg",
+    "date": "2026-07-09T13:10:00"
+  }
 ]
