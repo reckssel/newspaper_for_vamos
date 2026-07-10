@@ -1,5 +1,6 @@
 [
   {
+    "id": "a1",
     "category": "argentina",
     "title": {
       "de": "Regierung kündigt neue Wirtschaftsreformen an",
@@ -7,14 +8,20 @@
       "es": "El gobierno anuncia nuevas reformas económicas"
     },
     "summary": {
-      "de": "Die argentinische Regierung hat ein Maßnahmenpaket vorgestellt, das die Wirtschaft in den kommenden Monaten stärken soll.",
-      "en": "Argentina's government presented a package of measures intended to strengthen the economy in the coming months.",
-      "es": "El gobierno argentino presentó un paquete de medidas destinado a fortalecer la economía en los próximos meses."
+      "de": "Die argentinische Regierung hat ein Maßnahmenpaket vorgestellt, das die Wirtschaft stärken soll.",
+      "en": "Argentina's government presented a package of measures intended to strengthen the economy.",
+      "es": "El gobierno argentino presentó un paquete de medidas destinado a fortalecer la economía."
+    },
+    "content": {
+      "de": "Die argentinische Regierung hat am Mittwoch ein umfangreiches Maßnahmenpaket vorgestellt, das die Wirtschaft in den kommenden Monaten stärken soll. Im Zentrum stehen Steuererleichterungen für kleine und mittlere Unternehmen sowie Investitionen in die Infrastruktur. Wirtschaftsexperten reagierten verhalten optimistisch, warnten jedoch vor möglichen Auswirkungen auf die Inflation.",
+      "en": "Argentina's government presented an extensive package of measures on Wednesday intended to strengthen the economy in the coming months. The focus is on tax relief for small and medium-sized businesses as well as infrastructure investment. Economists reacted with cautious optimism but warned of possible effects on inflation.",
+      "es": "El gobierno argentino presentó el miércoles un amplio paquete de medidas destinado a fortalecer la economía en los próximos meses. El foco está en desgravaciones fiscales para pequeñas y medianas empresas, además de inversión en infraestructura. Los economistas reaccionaron con cautela optimista, pero advirtieron sobre posibles efectos en la inflación."
     },
     "image": "images/news1.jpg",
     "date": "2026-07-09T08:15:00"
   },
   {
+    "id": "a2",
     "category": "spain",
     "title": {
       "de": "Wetterdienst warnt vor Unwetter am Wochenende",
@@ -22,14 +29,20 @@
       "es": "El servicio meteorológico advierte de tormentas este fin de semana"
     },
     "summary": {
-      "de": "Für Spanien werden ab Samstag Starkregen und Sturmböen erwartet. Behörden raten zur Vorsicht in betroffenen Regionen.",
-      "en": "Heavy rain and gusts of wind are expected in Spain from Saturday. Authorities advise caution in affected regions.",
-      "es": "Se esperan lluvias intensas y ráfagas de viento en España a partir del sábado. Las autoridades piden precaución."
+      "de": "Für Spanien werden ab Samstag Starkregen und Sturmböen erwartet.",
+      "en": "Heavy rain and gusts of wind are expected in Spain from Saturday.",
+      "es": "Se esperan lluvias intensas y ráfagas de viento en España a partir del sábado."
+    },
+    "content": {
+      "de": "Der spanische Wetterdienst hat für das kommende Wochenende eine Unwetterwarnung herausgegeben. Betroffen sind vor allem die nördlichen Küstenregionen, wo mit Starkregen, Sturmböen von bis zu 90 km/h und lokalen Überschwemmungen gerechnet wird. Die Behörden raten dazu, Reisen in die betroffenen Gebiete nach Möglichkeit zu verschieben.",
+      "en": "Spain's weather service has issued a storm warning for the coming weekend. The northern coastal regions are expected to be hit hardest, with heavy rain, gusts of up to 90 km/h and local flooding. Authorities advise postponing travel to the affected areas if possible.",
+      "es": "El servicio meteorológico español ha emitido un aviso de tormenta para el próximo fin de semana. Las regiones costeras del norte serán las más afectadas, con lluvias intensas, ráfagas de hasta 90 km/h e inundaciones locales. Las autoridades recomiendan posponer los viajes a las zonas afectadas si es posible."
     },
     "image": "images/news2.jpg",
     "date": "2026-07-09T09:40:00"
   },
   {
+    "id": "a3",
     "category": "argentina",
     "title": {
       "de": "Neue Studie zeigt Fortschritte bei Klimaschutz",
@@ -37,14 +50,20 @@
       "es": "Un nuevo estudio muestra avances en la protección del clima"
     },
     "summary": {
-      "de": "Forscher in Argentinien berichten von deutlich gesunkenen Emissionswerten in mehreren Industriezweigen.",
-      "en": "Researchers in Argentina report significantly lower emission levels across several industries.",
-      "es": "Investigadores en Argentina informan de niveles de emisiones notablemente más bajos en varios sectores."
+      "de": "Forscher in Argentinien berichten von gesunkenen Emissionswerten in mehreren Industriezweigen.",
+      "en": "Researchers in Argentina report lower emission levels across several industries.",
+      "es": "Investigadores en Argentina informan de niveles de emisiones más bajos en varios sectores."
+    },
+    "content": {
+      "de": "Eine neue Studie argentinischer Forschungsinstitute zeigt, dass die Emissionswerte in der Schwerindustrie und im Energiesektor in den letzten drei Jahren deutlich gesunken sind. Als Hauptgründe nennen die Autoren den Ausbau erneuerbarer Energien sowie strengere Auflagen für Industriebetriebe. Die Regierung kündigte an, weitere Anreize für nachhaltige Investitionen zu schaffen.",
+      "en": "A new study by Argentine research institutes shows that emission levels in heavy industry and the energy sector have dropped significantly over the past three years. The authors cite the expansion of renewable energy and stricter regulations for industrial plants as the main reasons. The government announced further incentives for sustainable investment.",
+      "es": "Un nuevo estudio de institutos de investigación argentinos muestra que los niveles de emisiones en la industria pesada y el sector energético han disminuido notablemente en los últimos tres años. Los autores citan la expansión de las energías renovables y regulaciones más estrictas para las plantas industriales como las principales razones. El gobierno anunció más incentivos para inversiones sostenibles."
     },
     "image": "images/news3.jpg",
     "date": "2026-07-09T10:05:00"
   },
   {
+    "id": "a4",
     "category": "spain",
     "title": {
       "de": "Fußball: Überraschungssieg im Pokalfinale",
@@ -52,14 +71,20 @@
       "es": "Fútbol: Victoria sorpresa en la final de la copa"
     },
     "summary": {
-      "de": "Der spanische Außenseiter setzte sich völlig unerwartet gegen den Favoriten durch und sorgt für Jubel.",
-      "en": "The Spanish underdog unexpectedly beat the favorite, sparking wild celebrations.",
-      "es": "El equipo español menos favorito venció inesperadamente al favorito, provocando gran euforia."
+      "de": "Der spanische Außenseiter setzte sich unerwartet gegen den Favoriten durch.",
+      "en": "The Spanish underdog unexpectedly beat the favorite.",
+      "es": "El equipo español menos favorito venció inesperadamente al favorito."
+    },
+    "content": {
+      "de": "In einem packenden Finale hat der klare Außenseiter den amtierenden Meister mit 2:1 besiegt. Das entscheidende Tor fiel in der Nachspielzeit und sorgte für ausgelassene Feiern bei den Fans. Es ist der erste Pokalsieg des Vereins seit über zwanzig Jahren.",
+      "en": "In a thrilling final, the clear underdog defeated the reigning champion 2:1. The decisive goal came in stoppage time, sparking wild celebrations among fans. It is the club's first cup win in over twenty years.",
+      "es": "En una final apasionante, el claro perdedor venció al campeón vigente por 2 a 1. El gol decisivo llegó en el tiempo añadido, provocando una gran celebración entre los aficionados. Es el primer título de copa del club en más de veinte años."
     },
     "image": "images/news4.jpg",
     "date": "2026-07-09T11:20:00"
   },
   {
+    "id": "a5",
     "category": "argentina",
     "title": {
       "de": "Technologie: Neuer Durchbruch bei Batterien",
@@ -67,14 +92,20 @@
       "es": "Tecnología: Nuevo avance en el desarrollo de baterías"
     },
     "summary": {
-      "de": "Ein neues Material soll Ladezeiten drastisch verkürzen und die Lebensdauer von Akkus verlängern.",
-      "en": "A new material is said to drastically reduce charging times and extend battery life.",
-      "es": "Un nuevo material promete reducir drásticamente los tiempos de carga y alargar la vida útil de las baterías."
+      "de": "Ein neues Material soll Ladezeiten drastisch verkürzen.",
+      "en": "A new material is said to drastically reduce charging times.",
+      "es": "Un nuevo material promete reducir drásticamente los tiempos de carga."
+    },
+    "content": {
+      "de": "Ein Forscherteam aus Buenos Aires hat ein neues Elektrodenmaterial entwickelt, das Ladezeiten von Lithium-Akkus um bis zu 40 Prozent verkürzen soll, bei gleichzeitig längerer Lebensdauer. Erste Tests mit Prototypen verliefen vielversprechend. Eine Serienreife wird in den nächsten drei bis fünf Jahren erwartet.",
+      "en": "A research team from Buenos Aires has developed a new electrode material that could reduce lithium battery charging times by up to 40 percent while extending battery life. Initial tests with prototypes were promising. Mass production readiness is expected within three to five years.",
+      "es": "Un equipo de investigación de Buenos Aires ha desarrollado un nuevo material para electrodos que podría reducir los tiempos de carga de las baterías de litio hasta en un 40 por ciento, además de prolongar su vida útil. Las primeras pruebas con prototipos fueron prometedoras. Se espera que esté listo para producción en serie en los próximos tres a cinco años."
     },
     "image": "images/news5.jpg",
     "date": "2026-07-09T12:00:00"
   },
   {
+    "id": "a6",
     "category": "spain",
     "title": {
       "de": "Madrid plant neue Metro-Linie",
@@ -82,9 +113,14 @@
       "es": "Madrid planea una nueva línea de metro"
     },
     "summary": {
-      "de": "Die Stadtverwaltung kündigte den Bau einer neuen Linie an, die zwei bislang schlecht angebundene Stadtteile verbindet.",
-      "en": "The city administration announced construction of a new line connecting two previously poorly served districts.",
-      "es": "El ayuntamiento anunció la construcción de una nueva línea que conectará dos barrios hasta ahora mal comunicados."
+      "de": "Die Stadtverwaltung kündigte den Bau einer neuen Linie an.",
+      "en": "The city administration announced construction of a new line.",
+      "es": "El ayuntamiento anunció la construcción de una nueva línea."
+    },
+    "content": {
+      "de": "Die Stadtverwaltung Madrid hat den Bau einer neuen Metro-Linie angekündigt, die zwei bislang schlecht angebundene Stadtteile im Süden der Stadt verbindet. Die Bauarbeiten sollen Anfang nächsten Jahres beginnen, die Fertigstellung ist für 2029 geplant. Anwohner reagierten überwiegend positiv, äußerten aber Sorge wegen möglicher Verkehrsbehinderungen während der Bauzeit.",
+      "en": "Madrid's city administration has announced the construction of a new metro line connecting two previously poorly served districts in the south of the city. Construction is set to begin early next year, with completion planned for 2029. Residents reacted mostly positively but expressed concern about potential traffic disruption during construction.",
+      "es": "El ayuntamiento de Madrid ha anunciado la construcción de una nueva línea de metro que conectará dos barrios del sur de la ciudad hasta ahora mal comunicados. Las obras comenzarán a principios del próximo año, con finalización prevista para 2029. Los vecinos reaccionaron mayormente de forma positiva, aunque expresaron preocupación por posibles interrupciones del tráfico durante las obras."
     },
     "image": "images/news6.jpg",
     "date": "2026-07-09T13:10:00"

@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vamos Newspaper</title>
     <link rel="stylesheet" href="css/index.css">
+    <script>
+      // Vor dem Rendern ausführen, damit die Seite nicht kurz hell aufblitzt
+      (function () {
+        const saved = localStorage.getItem('vamos_theme');
+        if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      })();
+    </script>
     <script src="js/index.js" defer></script>
 </head>
 <body>
@@ -35,6 +42,12 @@
               <li><a href="#" data-lang="es">Español</a></li>
             </ul>
           </li>
+          <li>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Dark Mode umschalten">
+              <span class="theme-icon-light">☀️</span>
+              <span class="theme-icon-dark">🌙</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
@@ -51,11 +64,10 @@
 
       <aside class="market-box">
         <h3 data-de="Kurse" data-en="Markets" data-es="Cotizaciones">Kurse</h3>
-        <p class="market-placeholder" data-de="Kommt bald: Gold, Öl, Indizes, Krypto"
-           data-en="Coming soon: Gold, Oil, Indices, Crypto"
-           data-es="Próximamente: Oro, Petróleo, Índices, Cripto">
-          Kommt bald: Gold, Öl, Indizes, Krypto
-        </p>
+        <div class="market-list" id="marketList">
+          <!-- wird per JS gefüllt -->
+        </div>
+        <span class="market-updated" id="marketUpdated"></span>
       </aside>
 
     </div>
@@ -76,6 +88,20 @@
       Footer
     </footer>
 
+  </div>
+
+  <!-- Artikel-Detail-Modal -->
+  <div class="modal-overlay" id="articleModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Schließen">&times;</button>
+      <img id="modalImage" src="" alt="">
+      <div class="modal-content">
+        <span class="modal-category" id="modalCategory"></span>
+        <h2 id="modalTitle"></h2>
+        <span class="modal-date" id="modalDate"></span>
+        <p id="modalBody"></p>
+      </div>
+    </div>
   </div>
 
 </body>

@@ -1,0 +1,315 @@
+.admin-body {
+  background: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* ---------- LOGIN GATE ---------- */
+
+.login-gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-gate[hidden] {
+  display: none;
+}
+
+.login-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 32px;
+  width: 100%;
+  max-width: 340px;
+  display: grid;
+  gap: 14px;
+  text-align: center;
+}
+
+.login-box h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--color-primary);
+  font-size: 22px;
+}
+
+.login-box input {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font: inherit;
+  text-align: center;
+}
+
+.login-error {
+  color: var(--color-primary);
+  font-size: 13px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logout-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.logout-btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--color-surface);
+  border-bottom: 3px solid var(--color-primary);
+}
+
+.admin-tag {
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  background: var(--color-primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+.back-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.admin-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 24px;
+}
+
+.admin-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.admin-panel h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.panel-heading h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--color-primary);
+  font-size: 18px;
+}
+
+.admin-hint {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.admin-hint code {
+  background: var(--color-bg);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ---------- FORM ---------- */
+
+.article-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  gap: 6px;
+}
+
+.form-row label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.form-row input,
+.form-row select {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.lang-fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.lang-fieldset legend {
+  font-weight: 600;
+  color: var(--color-primary);
+  padding: 0 6px;
+}
+
+.lang-fieldset input,
+.lang-fieldset textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font: inherit;
+  resize: vertical;
+}
+
+.submit-btn {
+  justify-self: start;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ---------- ARTIKEL-LISTE ---------- */
+
+.admin-articles-list {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-article-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.admin-article-row img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--color-border);
+}
+
+.admin-article-row .row-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.admin-article-row .row-source {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.row-source.from-json {
+  background: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.row-source.from-local {
+  background: var(--color-accent);
+  color: white;
+}
+
+.delete-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.delete-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ---------- EXPORT ---------- */
+
+.export-btn {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.export-btn:hover {
+  opacity: 0.9;
+}
+
+.export-output {
+  width: 100%;
+  font-family: monospace;
+  font-size: 12px;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+}
+
+@media (min-width: 700px) {
+  .lang-fieldset {
+    grid-template-columns: 1fr;
+  }
+}

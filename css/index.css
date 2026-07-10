@@ -11,10 +11,28 @@
   --color-border: #e2ddd3;
 }
 
+/* ---------- DARK MODE ---------- */
+[data-theme="dark"] {
+  --color-bg: #17151a;
+  --color-surface: #221f26;
+  --color-primary: #e0566a;      /* helleres Rot, lesbar auf Dunkel */
+  --color-primary-dark: #b03a4a;
+  --color-accent: #e0b93f;       /* etwas heller Gold auf Dunkel */
+  --color-text: #eee8e8;
+  --color-text-muted: #a39da3;
+  --color-border: #3a3640;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: var(--color-bg);
   color: var(--color-text);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+body,
+body * {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 /* ---------- LAYOUT ---------- */
@@ -128,6 +146,37 @@ nav a:hover {
   color: var(--color-primary);
   border-bottom: 2px solid var(--color-accent);
   padding-bottom: 2px;
+}
+
+/* ---------- DARK MODE TOGGLE ---------- */
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  width: 44px;
+  height: 24px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1;
+}
+
+.theme-icon-light {
+  left: 5px;
+}
+
+.theme-icon-dark {
+  right: 5px;
 }
 
 /* Sprachauswahl Dropdown */
@@ -265,8 +314,7 @@ nav a:hover {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .market-box h3 {
@@ -277,6 +325,59 @@ nav a:hover {
 .market-placeholder {
   color: var(--color-text-muted);
   font-size: 14px;
+}
+
+.market-list {
+  display: grid;
+  gap: 10px;
+}
+
+.market-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.market-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.market-row .market-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-text);
+}
+
+.market-row .market-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: right;
+}
+
+.market-row .market-change {
+  grid-column: 2;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.market-change.positive {
+  color: #1a7a3c;
+}
+
+.market-change.negative {
+  color: var(--color-primary);
+}
+
+.market-updated {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-align: right;
 }
 
 /* ---------- MAIN / ARTIKEL ---------- */
@@ -320,12 +421,18 @@ main {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .article-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.article-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .article-card img {
@@ -369,6 +476,106 @@ footer {
   padding: 20px;
   background: var(--color-primary);
   color: white;
+}
+
+.admin-link {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+
+.admin-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* ---------- ARTIKEL-DETAIL-MODAL ---------- */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.modal-box img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  background: var(--color-border);
+}
+
+.modal-content {
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.modal-category {
+  display: inline-block;
+  justify-self: start;
+  background: var(--color-bg);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+.modal-content h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--color-text);
+  font-size: 22px;
+}
+
+.modal-content .modal-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.modal-content p {
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 15px;
 }
 
 /* ---------- SEHR KLEINE HANDYS (bis 400px) ---------- */
