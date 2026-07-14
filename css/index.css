@@ -422,6 +422,7 @@ main {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  position: relative;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -433,6 +434,34 @@ main {
 .article-card:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.45);
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+}
+
+.favorite-btn.active {
+  background: var(--color-accent);
+  color: white;
 }
 
 .article-card img {

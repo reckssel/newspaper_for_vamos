@@ -259,19 +259,62 @@ if (articlesGrid) {
     }
   }
 
+  // ---------- Favoriten ----------
+
+  const FAVORITES_KEY = 'vamos_favorites';
+
+  function getFavorites() {
+    try {
+      const raw = localStorage.getItem(FAVORITES_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function isFavorite(id) {
+    return getFavorites().includes(id);
+  }
+
+  function toggleFavorite(id) {
+    const favs = getFavorites();
+    const index = favs.indexOf(id);
+
+    if (index === -1) {
+      favs.push(id);
+    } else {
+      favs.splice(index, 1);
+    }
+
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favs));
+    return favs.includes(id);
+  }
+
   function renderArticles(articles) {
     articlesGrid.innerHTML = '';
 
-    const filtered = currentFilter === 'all'
-      ? articles
-      : articles.filter(a => a.category === currentFilter);
+    let filtered;
+    if (currentFilter === 'all') {
+      filtered = articles;
+    } else if (currentFilter === 'favorites') {
+      const favs = getFavorites();
+      filtered = articles.filter(a => favs.includes(a.id));
+    } else {
+      filtered = articles.filter(a => a.category === currentFilter);
+    }
 
     if (!filtered.length) {
-      const emptyLabel = {
-        de: 'Keine Artikel in dieser Kategorie.',
-        en: 'No articles in this category.',
-        es: 'No hay artículos en esta categoría.'
-      };
+      const emptyLabel = currentFilter === 'favorites'
+        ? {
+            de: 'Noch keine Favoriten. Klick auf den Stern bei einem Artikel!',
+            en: 'No favorites yet. Click the star on an article!',
+            es: 'Aún no hay favoritos. ¡Haz clic en la estrella de un artículo!'
+          }
+        : {
+            de: 'Keine Artikel in dieser Kategorie.',
+            en: 'No articles in this category.',
+            es: 'No hay artículos en esta categoría.'
+          };
       articlesGrid.innerHTML = `<p>${emptyLabel[currentLang] || emptyLabel.de}</p>`;
       return;
     }
@@ -286,8 +329,12 @@ if (articlesGrid) {
 
       const title = pickText(article.title);
       const summary = article.summary ? pickText(article.summary) : '';
+      const favActive = isFavorite(article.id);
 
       card.innerHTML = `
+        <button class="favorite-btn ${favActive ? 'active' : ''}" aria-label="Favorit umschalten">
+          ${favActive ? '★' : '☆'}
+        </button>
         ${article.image ? `<img src="${article.image}" alt="">` : ''}
         <div class="article-body">
           <h3>${title}</h3>
@@ -301,6 +348,19 @@ if (articlesGrid) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           openArticleModal(article);
+        }
+      });
+
+      const favBtn = card.querySelector('.favorite-btn');
+      favBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Klick auf Stern soll nicht das Modal öffnen
+        const nowActive = toggleFavorite(article.id);
+        favBtn.classList.toggle('active', nowActive);
+        favBtn.textContent = nowActive ? '★' : '☆';
+
+        // Falls gerade die Favoriten-Ansicht aktiv ist: Liste neu rendern
+        if (currentFilter === 'favorites') {
+          renderArticles(latestArticles);
         }
       });
 
