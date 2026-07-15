@@ -7,6 +7,13 @@
   <title>Vamos Newspaper – Admin</title>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/verwaltung-x7k2p.css">
+  <script>
+    // Vor dem Rendern ausführen, damit die Seite nicht kurz hell aufblitzt
+    (function () {
+      const saved = localStorage.getItem('vamos_theme');
+      if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
   <script src="js/verwaltung-x7k2p.js" defer></script>
 </head>
 <body class="admin-body">
@@ -28,6 +35,10 @@
     <header class="admin-header">
       <div class="logo">Logo <span class="admin-tag">Admin</span></div>
       <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+          <span class="theme-icon-light">☀️</span>
+          <span class="theme-icon-dark">🌙</span>
+        </button>
         <a href="index.html" class="back-link">← Back to website</a>
         <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
       </div>

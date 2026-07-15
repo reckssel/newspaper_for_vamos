@@ -5,7 +5,7 @@
 //  über die globale Variable currentLang.
 // ============================================================
 
-let currentLang = document.documentElement.lang || 'de';
+let currentLang = document.documentElement.lang || 'en';
 let currentFilter = 'all'; // 'all' | 'argentina' | 'spain'
 
 // Wird von anderen Abschnitten befüllt, damit beim Sprachwechsel
@@ -15,6 +15,14 @@ const onLanguageChange = [];
 // Wird von anderen Abschnitten befüllt, damit beim Kategorie-Wechsel
 // ohne erneuten fetch() neu gefiltert/gerendert werden kann.
 const onFilterChange = [];
+
+
+// ---------- Footer-Jahr automatisch aktuell halten ----------
+
+const footerYear = document.getElementById('footerYear');
+if (footerYear) {
+  footerYear.textContent = new Date().getFullYear();
+}
 
 
 // ---------- Dark Mode ----------
@@ -83,8 +91,8 @@ if (navLinks.length) {
       e.preventDefault();
       currentFilter = link.dataset.filter;
 
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
+      // Header- und Footer-Links mit demselben Filter bleiben synchron aktiv
+      navLinks.forEach(l => l.classList.toggle('active', l.dataset.filter === currentFilter));
 
       onFilterChange.forEach(callback => callback(currentFilter));
     });
@@ -148,7 +156,7 @@ if (tickerEl && tickerText && prevBtn && nextBtn) {
 
   function getTitle(item) {
     if (typeof item.title === 'string') return item.title; // Fallback für einfache Strings
-    return item.title[currentLang] || item.title.de || '';
+    return item.title[currentLang] || item.title.en || '';
   }
 
   function showTickerNews(index) {
@@ -235,13 +243,13 @@ if (articlesGrid) {
   function pickText(field) {
     if (!field) return '';
     if (typeof field === 'string') return field; // Fallback für einfache Strings
-    return field[currentLang] || field.de || '';
+    return field[currentLang] || field.en || '';
   }
 
   function formatDate(isoString) {
     if (!isoString) return '';
     const d = new Date(isoString);
-    const locale = localeMap[currentLang] || 'de-DE';
+    const locale = localeMap[currentLang] || 'en-US';
     return d.toLocaleDateString(locale, {
       day: '2-digit', month: '2-digit', year: 'numeric'
     }) + ' · ' + d.toLocaleTimeString(locale, {
@@ -371,9 +379,9 @@ if (articlesGrid) {
   function updateTimestamp() {
     if (!lastUpdatedEl) return;
     const now = new Date();
-    const locale = localeMap[currentLang] || 'de-DE';
+    const locale = localeMap[currentLang] || 'en-US';
     const label = { de: 'Zuletzt aktualisiert', en: 'Last updated', es: 'Última actualización' };
-    lastUpdatedEl.textContent = (label[currentLang] || label.de) + ': ' +
+    lastUpdatedEl.textContent = (label[currentLang] || label.en) + ': ' +
       now.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
   }
 
@@ -393,7 +401,7 @@ if (articlesGrid) {
 
     } catch (error) {
       console.error('Fehler beim Laden der Artikel:', error);
-      articlesGrid.innerHTML = '<p>Artikel konnten nicht geladen werden.</p>';
+      articlesGrid.innerHTML = '<p>Articles could not be loaded.</p>';
     }
   }
 
@@ -436,7 +444,7 @@ function openArticleModal(article) {
   const pick = (field) => {
     if (!field) return '';
     if (typeof field === 'string') return field;
-    return field[currentLang] || field.de || '';
+    return field[currentLang] || field.en || '';
   };
 
   const localeMap = { de: 'de-DE', en: 'en-US', es: 'es-ES' };
@@ -459,7 +467,7 @@ function openArticleModal(article) {
 
   if (modalDate && article.date) {
     const d = new Date(article.date);
-    const locale = localeMap[currentLang] || 'de-DE';
+    const locale = localeMap[currentLang] || 'en-US';
     modalDate.textContent = d.toLocaleDateString(locale, {
       day: '2-digit', month: '2-digit', year: 'numeric'
     }) + ' · ' + d.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
@@ -540,7 +548,7 @@ if (marketList && TWELVE_DATA_API_KEY && TWELVE_DATA_API_KEY !== 'DEIN_API_KEY_H
 
     } catch (error) {
       console.error('Fehler beim Laden der Kurse:', error);
-      marketList.innerHTML = '<p class="market-placeholder">Kurse konnten nicht geladen werden.</p>';
+      marketList.innerHTML = '<p class="market-placeholder">Market data could not be loaded.</p>';
     }
   }
 
@@ -555,7 +563,7 @@ if (marketList && TWELVE_DATA_API_KEY && TWELVE_DATA_API_KEY !== 'DEIN_API_KEY_H
 
       if (!quote || quote.status === 'error' || quote.code) {
         row.innerHTML = `
-          <span class="market-name">${label[currentLang] || label.de}</span>
+          <span class="market-name">${label[currentLang] || label.en}</span>
           <span class="market-price">–</span>
         `;
         marketList.appendChild(row);
@@ -571,7 +579,7 @@ if (marketList && TWELVE_DATA_API_KEY && TWELVE_DATA_API_KEY !== 'DEIN_API_KEY_H
       const changeText = (isPositive ? '+' : '') + changePercent.toFixed(2) + '%';
 
       row.innerHTML = `
-        <span class="market-name">${label[currentLang] || label.de}</span>
+        <span class="market-name">${label[currentLang] || label.en}</span>
         <span class="market-price">${price}</span>
         <span class="market-change ${isPositive ? 'positive' : 'negative'}">${changeText}</span>
       `;
@@ -583,9 +591,9 @@ if (marketList && TWELVE_DATA_API_KEY && TWELVE_DATA_API_KEY !== 'DEIN_API_KEY_H
   function updateMarketTimestamp() {
     if (!marketUpdated) return;
     const now = new Date();
-    const locale = { de: 'de-DE', en: 'en-US', es: 'es-ES' }[currentLang] || 'de-DE';
+    const locale = { de: 'de-DE', en: 'en-US', es: 'es-ES' }[currentLang] || 'en-US';
     const label = { de: 'Stand', en: 'As of', es: 'Actualizado' };
-    marketUpdated.textContent = (label[currentLang] || label.de) + ': ' +
+    marketUpdated.textContent = (label[currentLang] || label.en) + ': ' +
       now.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
   }
 
@@ -598,5 +606,5 @@ if (marketList && TWELVE_DATA_API_KEY && TWELVE_DATA_API_KEY !== 'DEIN_API_KEY_H
   setInterval(loadMarketData, MARKET_REFRESH_MS);
 
 } else if (marketList) {
-  marketList.innerHTML = '<p class="market-placeholder">API-Key fehlt noch – trag ihn in js/index.js ein.</p>';
+  marketList.innerHTML = '<p class="market-placeholder">API key missing – add it in js/index.js.</p>';
 }

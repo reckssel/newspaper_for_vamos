@@ -5,6 +5,26 @@
 // ============================================================
 
 
+// ---------- Dark Mode ----------
+
+const THEME_KEY = 'vamos_theme';
+const themeToggle = document.getElementById('themeToggle');
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem(THEME_KEY, 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem(THEME_KEY, 'dark');
+    }
+  });
+}
+
+
 // ---------- Password protection ----------
 // Note: this is client-side protection without a real server.
 // It keeps out casual visitors/search engines, but it is not
