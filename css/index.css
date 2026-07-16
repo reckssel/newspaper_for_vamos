@@ -12,7 +12,7 @@
 }
 
 .logo1 {
-  height: 44px;
+  height: 80px;
   width: auto;
   display: block;
 }
@@ -79,7 +79,7 @@ header {
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 50px;
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', serif;
   color: var(--color-primary);
