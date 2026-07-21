@@ -30,6 +30,12 @@ if (footerYear) {
 const THEME_KEY = 'vamos_theme';
 const themeToggle = document.getElementById('themeToggle');
 
+function updateThemeColorMeta(isDark) {
+  document.querySelectorAll('meta[name="theme-color"]').forEach(meta => {
+    meta.setAttribute('content', isDark ? '#17151a' : '#7a1f2b');
+  });
+}
+
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -37,9 +43,11 @@ if (themeToggle) {
     if (isDark) {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem(THEME_KEY, 'light');
+      updateThemeColorMeta(false);
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem(THEME_KEY, 'dark');
+      updateThemeColorMeta(true);
     }
   });
 }
@@ -343,7 +351,7 @@ if (articlesGrid) {
         <button class="favorite-btn ${favActive ? 'active' : ''}" aria-label="Favorit umschalten">
           ${favActive ? '★' : '☆'}
         </button>
-        ${article.image ? `<img src="${article.image}" alt="">` : ''}
+        ${article.image ? `<img src="${article.image}" alt="" loading="lazy" decoding="async">` : ''}
         <div class="article-body">
           <h3>${title}</h3>
           ${summary ? `<p>${summary}</p>` : ''}
@@ -501,6 +509,98 @@ if (articleModal) {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeArticleModal();
   });
+}
+
+
+// ---------- Wetter (Open-Meteo API, kostenlos, ohne Key) ----------
+
+const weatherList = document.getElementById('weatherList');
+
+const WEATHER_CITIES = [
+  { name: { de: 'Buenos Aires', en: 'Buenos Aires', es: 'Buenos Aires' }, lat: -34.6037, lon: -58.3816 },
+  { name: { de: 'Madrid', en: 'Madrid', es: 'Madrid' }, lat: 40.4168, lon: -3.7038 }
+];
+
+// Wetter alle 20 Minuten aktualisieren (Wetter ändert sich langsam,
+// Open-Meteo hat aber ohnehin kein knappes Anfragelimit)
+const WEATHER_REFRESH_MS = 20 * 60 * 1000;
+
+// Vereinfachte Zuordnung der Open-Meteo "weather_code" zu Icon + Text
+function weatherCodeToIcon(code) {
+  if (code === 0) return '☀️';
+  if ([1, 2].includes(code)) return '🌤️';
+  if (code === 3) return '☁️';
+  if ([45, 48].includes(code)) return '🌫️';
+  if ([51, 53, 55, 56, 57].includes(code)) return '🌦️';
+  if ([61, 63, 65, 80, 81, 82].includes(code)) return '🌧️';
+  if ([66, 67].includes(code)) return '🌧️';
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return '❄️';
+  if ([95, 96, 99].includes(code)) return '⛈️';
+  return '🌡️';
+}
+
+if (weatherList) {
+
+  let latestWeather = []; // zwischengespeichert für Sprachwechsel ohne neuen Fetch
+
+  function renderWeather(results) {
+    weatherList.innerHTML = '';
+
+    results.forEach(({ city, temp, code }) => {
+      const row = document.createElement('div');
+      row.className = 'weather-row';
+
+      const cityName = city.name[currentLang] || city.name.en;
+
+      if (temp === null) {
+        row.innerHTML = `
+          <span class="weather-icon">–</span>
+          <span class="weather-city">${cityName}</span>
+          <span class="weather-temp">–</span>
+        `;
+      } else {
+        row.innerHTML = `
+          <span class="weather-icon">${weatherCodeToIcon(code)}</span>
+          <span class="weather-city">${cityName}</span>
+          <span class="weather-temp">${Math.round(temp)}°C</span>
+        `;
+      }
+
+      weatherList.appendChild(row);
+    });
+  }
+
+  async function loadWeather() {
+    try {
+      const results = await Promise.all(
+        WEATHER_CITIES.map(async (city) => {
+          const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,weather_code&timezone=auto`;
+          const response = await fetch(url);
+          const data = await response.json();
+          return {
+            city,
+            temp: data.current?.temperature_2m ?? null,
+            code: data.current?.weather_code ?? null
+          };
+        })
+      );
+
+      latestWeather = results;
+      renderWeather(results);
+
+    } catch (error) {
+      console.error('Fehler beim Laden des Wetters:', error);
+      weatherList.innerHTML = '<p class="market-placeholder">Weather could not be loaded.</p>';
+    }
+  }
+
+  // Beim Sprachwechsel: Städtenamen neu anzeigen, ohne neuen API-Call
+  onLanguageChange.push(() => {
+    if (latestWeather.length) renderWeather(latestWeather);
+  });
+
+  loadWeather();
+  setInterval(loadWeather, WEATHER_REFRESH_MS);
 }
 
 

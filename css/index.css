@@ -1,47 +1,71 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ============================================================
+   Vamos Newspaper – Stylesheet
+   Mobile-first. Breakpoints: 400 / 600 / 768 / 900 / 1024 / 1200 / 1600
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 :root {
   --color-bg: #f7f5f0;
   --color-surface: #ffffff;
-  --color-primary: #7a1f2b;   /* dunkles Zeitungs-Rot */
+  --color-primary: #7a1f2b;
   --color-primary-dark: #5c1620;
-  --color-accent: #c9a227;    /* gold */
+  --color-accent: #c9a227;
   --color-text: #2b2b2b;
   --color-text-muted: #6b6b6b;
   --color-border: #e2ddd3;
 }
 
-.logo1 {
-  height: 80px;
-  width: auto;
-  display: block;
-}
-
-/* ---------- DARK MODE ---------- */
 [data-theme="dark"] {
   --color-bg: #17151a;
   --color-surface: #221f26;
-  --color-primary: #e0566a;      /* helleres Rot, lesbar auf Dunkel */
+  --color-primary: #e0566a;
   --color-primary-dark: #b03a4a;
-  --color-accent: #e0b93f;       /* etwas heller Gold auf Dunkel */
+  --color-accent: #e0b93f;
   --color-text: #eee8e8;
   --color-text-muted: #a39da3;
   --color-border: #3a3640;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: var(--color-bg);
-  color: var(--color-text);
-  transition: background 0.2s ease, color 0.2s ease;
+html {
+  /* Verhindert horizontales Scrollen durch versehentlich zu breite Elemente */
+  overflow-x: hidden;
+  width: 100%;
 }
 
-body,
-body * {
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+  width: 100%;
+  /* Entfernt den grauen Tipp-Flash auf iOS/Android */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Buttons/Links reagieren sofort (kein 300ms-Doppeltipp-Zoom-Delay) */
+button, a {
+  touch-action: manipulation;
+}
+
+body, body * {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* ---------- LAYOUT ---------- */
+a { color: inherit; }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   PAGE LAYOUT
+   ============================================================ */
 
 .page {
   display: grid;
@@ -55,7 +79,9 @@ body * {
   min-height: 100vh;
 }
 
-/* ---------- HEADER ---------- */
+/* ============================================================
+   HEADER
+   ============================================================ */
 
 header {
   grid-area: header;
@@ -74,29 +100,32 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 14px max(20px, env(safe-area-inset-right)) 14px max(20px, env(safe-area-inset-left));
+  padding-top: max(14px, env(safe-area-inset-top));
   width: 100%;
 }
 
 .logo {
-  font-size: 50px;
-  font-weight: bold;
-  font-family: Georgia, 'Times New Roman', serif;
-  color: var(--color-primary);
-  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
 }
 
-/* ---------- BURGER BUTTON ---------- */
+.logo1 {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* Burger button (mobile/tablet nav toggle) */
 
 .burger-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;
@@ -106,7 +135,7 @@ header {
 .burger-btn span {
   display: block;
   height: 3px;
-  width: 100%;
+  width: 22px;
   background: var(--color-primary);
   border-radius: 2px;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -115,16 +144,14 @@ header {
 .burger-btn[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
-
 .burger-btn[aria-expanded="true"] span:nth-child(2) {
   opacity: 0;
 }
-
 .burger-btn[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* ---------- NAV (Dropdown auf Handy/Tablet) ---------- */
+/* Nav (collapsible dropdown on mobile/tablet) */
 
 .site-nav {
   display: none;
@@ -135,27 +162,24 @@ header {
   display: block;
 }
 
-nav ul {
+.site-nav ul {
   list-style: none;
   display: grid;
   grid-auto-flow: row;
-  gap: 14px;
+  gap: 4px;
   text-align: center;
 }
 
-nav ul li {
-  border-left: none;
-  padding-left: 0;
-}
-
-nav a {
+.site-nav a,
+.lang-btn {
   text-decoration: none;
   color: var(--color-text);
   font-weight: 600;
-  transition: color 0.2s;
+  display: block;
+  padding: 10px;
 }
 
-nav a:hover {
+.site-nav a:hover {
   color: var(--color-primary);
 }
 
@@ -165,7 +189,55 @@ nav a:hover {
   padding-bottom: 2px;
 }
 
-/* ---------- DARK MODE TOGGLE ---------- */
+/* Language switch */
+
+.lang-switch {
+  position: relative;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: var(--color-primary);
+  padding: 0;
+}
+
+.lang-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 130px;
+  z-index: 20;
+  list-style: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.lang-switch.open .lang-menu {
+  display: block;
+}
+
+.lang-menu a {
+  display: block;
+  padding: 10px 14px;
+  font-weight: normal;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.lang-menu a:hover {
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+
+/* Dark mode toggle */
 
 .theme-toggle {
   background: none;
@@ -179,6 +251,7 @@ nav a:hover {
   font-size: 13px;
   display: flex;
   align-items: center;
+  margin: 0 auto;
 }
 
 .theme-toggle span {
@@ -188,79 +261,25 @@ nav a:hover {
   line-height: 1;
 }
 
-.theme-icon-light {
-  left: 5px;
-}
+.theme-icon-light { left: 5px; }
+.theme-icon-dark { right: 5px; }
 
-.theme-icon-dark {
-  right: 5px;
-}
-
-/* Sprachauswahl Dropdown */
-.lang-switch {
-  position: relative;
-}
-
-.lang-btn {
-  background: none;
-  border: none;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--color-primary);
-  padding: 0;
-}
-
-.lang-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  overflow: hidden;
-  min-width: 130px;
-  z-index: 10;
-  list-style: none;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-.lang-menu li {
-  border-left: none;
-  padding: 0;
-}
-
-.lang-menu a {
-  display: block;
-  padding: 10px 14px;
-  font-weight: normal;
-  color: var(--color-text);
-}
-
-.lang-menu a:hover {
-  background: var(--color-bg);
-  color: var(--color-primary);
-}
-
-.lang-switch.open .lang-menu {
-  display: block;
-}
-
-/* ---------- TOP ROW: TICKER + KURSE ---------- */
+/* ============================================================
+   TOP ROW: TICKER + WEATHER + MARKETS
+   ============================================================ */
 
 .top-row {
   grid-area: toprow;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  padding: 20px;
+  gap: 16px;
+  padding: 16px 20px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
 }
 
-/* ---------- TICKER ---------- */
+/* ---- Ticker ---- */
 
 .ticker {
   position: relative;
@@ -268,7 +287,7 @@ nav a:hover {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 10px;
-  padding: 30px 20px;
+  padding: 24px 16px;
   border-radius: 10px;
   overflow: hidden;
   background-color: var(--color-primary-dark);
@@ -297,7 +316,7 @@ nav a:hover {
   color: var(--color-accent);
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .ticker-text {
@@ -310,89 +329,96 @@ nav a:hover {
 }
 
 .ticker button {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.5);
   color: white;
-  padding: 6px 14px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 6px 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 6px;
   transition: background 0.2s;
 }
 
 .ticker button:hover {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255,255,255,0.28);
 }
 
-/* ---------- KURSE-BOX ---------- */
+/* ---- Shared card look for weather/markets ---- */
 
+.weather-box,
 .market-box {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-top: 4px solid var(--color-accent);
   border-radius: 10px;
-  padding: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
+.weather-box h3,
 .market-box h3 {
   color: var(--color-primary);
   font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
 }
 
-.market-placeholder {
-  color: var(--color-text-muted);
-  font-size: 14px;
-}
-
+.weather-list,
 .market-list {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
+.weather-row,
 .market-row {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
   gap: 8px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
 }
 
+.weather-row:last-child,
 .market-row:last-child {
   border-bottom: none;
   padding-bottom: 0;
 }
 
-.market-row .market-name {
+.weather-icon { font-size: 18px; }
+
+.weather-city,
+.market-name {
   font-weight: 600;
-  font-size: 13px;
   color: var(--color-text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.market-row .market-price {
-  font-size: 14px;
+.weather-temp,
+.market-price {
   font-weight: 700;
   color: var(--color-text);
   text-align: right;
+  white-space: nowrap;
 }
 
-.market-row .market-change {
+.market-change {
   grid-column: 2;
   text-align: right;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
 }
 
-.market-change.positive {
-  color: #1a7a3c;
-}
-
-.market-change.negative {
-  color: var(--color-primary);
-}
+.market-change.positive { color: #1a7a3c; }
+.market-change.negative { color: var(--color-primary); }
 
 .market-updated {
   font-size: 11px;
@@ -400,7 +426,14 @@ nav a:hover {
   text-align: right;
 }
 
-/* ---------- MAIN / ARTIKEL ---------- */
+.market-placeholder {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* ============================================================
+   MAIN / ARTICLES
+   ============================================================ */
 
 main {
   grid-area: main;
@@ -424,6 +457,7 @@ main {
 .section-heading h2 {
   font-family: Georgia, 'Times New Roman', serif;
   color: var(--color-primary);
+  font-size: 20px;
 }
 
 .last-updated {
@@ -459,17 +493,24 @@ main {
   outline-offset: 2px;
 }
 
+.article-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: var(--color-border);
+}
+
 .favorite-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 34px;
-  height: 34px;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   background: rgba(0,0,0,0.45);
   color: white;
-  font-size: 17px;
+  font-size: 18px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -478,23 +519,13 @@ main {
   transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.favorite-btn:hover {
-  transform: scale(1.1);
-}
+.favorite-btn:hover { transform: scale(1.1); }
 
 .favorite-btn.active {
   background: var(--color-accent);
-  color: white;
 }
 
-.article-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  background: var(--color-border);
-}
-
-.article-card .article-body {
+.article-body {
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -502,211 +533,27 @@ main {
   flex: 1;
 }
 
-.article-card h3 {
+.article-body h3 {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 18px;
   color: var(--color-text);
 }
 
-.article-card p {
+.article-body p {
   font-size: 14px;
   color: var(--color-text-muted);
   flex: 1;
 }
 
-.article-card .article-date {
+.article-date {
   font-size: 12px;
   color: var(--color-accent);
   font-weight: 600;
 }
 
-/* ---------- FOOTER ---------- */
-
-.admin-link {
-  display: block;
-  margin-top: 8px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-}
-
-.admin-link:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-/* ---------- ARTIKEL-DETAIL-MODAL ---------- */
-
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.modal-overlay.open {
-  display: flex;
-}
-
-.modal-box {
-  position: relative;
-  background: var(--color-surface);
-  border-radius: 12px;
-  max-width: 600px;
-  width: 100%;
-  max-height: 85vh;
-  overflow-y: auto;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  background: rgba(0,0,0,0.4);
-  color: white;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.modal-box img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
-  background: var(--color-border);
-}
-
-.modal-content {
-  padding: 20px;
-  display: grid;
-  gap: 10px;
-}
-
-.modal-category {
-  display: inline-block;
-  justify-self: start;
-  background: var(--color-bg);
-  color: var(--color-primary);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 4px 10px;
-  border-radius: 10px;
-}
-
-.modal-content h2 {
-  font-family: Georgia, 'Times New Roman', serif;
-  color: var(--color-text);
-  font-size: 22px;
-}
-
-.modal-content .modal-date {
-  font-size: 12px;
-  color: var(--color-text-muted);
-}
-
-.modal-content p {
-  color: var(--color-text);
-  line-height: 1.6;
-  font-size: 15px;
-}
-
-/* ---------- SEHR KLEINE HANDYS (bis 400px) ---------- */
-@media (max-width: 400px) {
-  .logo1 {
-    height: 36px;
-  }
-
-  .ticker {
-    padding: 20px 12px;
-  }
-
-  .ticker-text {
-    font-size: 13px;
-  }
-
-  .ticker button {
-    padding: 4px 10px;
-    font-size: 14px;
-  }
-
-  .section-heading h2 {
-    font-size: 18px;
-  }
-
-  .article-card img {
-    height: 130px;
-  }
-}
-
-/* ---------- TABLET (ab 768px) – Burger bleibt noch aktiv ---------- */
-@media (min-width: 768px) {
-  /* Ab Tablet wieder eine Zeile für den Ticker-Text */
-  .ticker-text {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 15px;
-  }
-
-  /* Ticker doppelt so groß wie die Kurse-Box */
-  .top-row {
-    grid-template-columns: 2fr 1fr;
-  }
-
-  .articles-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ---------- DESKTOP (ab 1024px) – Burger verschwindet, Nav wird zur Zeile ---------- */
-@media (min-width: 1024px) {
-  .burger-btn {
-    display: none;
-  }
-
-  header {
-    padding: 0;
-  }
-
-  .header-inner {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    padding: 16px 20px;
-  }
-
-  .header-top {
-    padding: 0;
-  }
-
-  .site-nav {
-    display: block;
-    padding: 0;
-  }
-
-  nav ul {
-    grid-auto-flow: column;
-    justify-content: end;
-    gap: 20px;
-  }
-
-  nav ul li {
-    border-left: 1px solid var(--color-border);
-    padding-left: 20px;
-  }
-}
-/* ---------- FOOTER ---------- */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 
 footer {
   grid-area: footer;
@@ -789,12 +636,215 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.12);
   text-align: center;
   padding: 18px 20px;
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
   font-size: 13px;
   color: rgba(255,255,255,0.5);
 }
 
-.footer-dot {
-  margin: 0 6px;
+.footer-dot { margin: 0 6px; }
+
+/* ============================================================
+   ARTICLE DETAIL MODAL
+   ============================================================ */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.modal-box img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  background: var(--color-border);
+}
+
+.modal-content {
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.modal-category {
+  display: inline-block;
+  justify-self: start;
+  background: var(--color-bg);
+  color: var(--color-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+.modal-content h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--color-text);
+  font-size: 22px;
+}
+
+.modal-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.modal-content p {
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* ============================================================
+   BREAKPOINTS
+   ============================================================ */
+
+@media (max-width: 400px) {
+  .logo1 { height: 32px; }
+  .ticker { padding: 18px 12px; }
+  .ticker-text { font-size: 13px; }
+  .ticker button { padding: 4px 10px; font-size: 14px; }
+  .section-heading h2 { font-size: 17px; }
+  .article-card img { height: 130px; }
+}
+
+/* Modal als Bottom-Sheet auf allen Handys (nicht nur sehr kleinen) */
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-box {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+@media (min-width: 600px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .header-inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .header-top { padding: 0; }
+
+  .burger-btn { display: none; }
+
+  .site-nav {
+    display: block;
+    padding: 0;
+  }
+
+  .site-nav ul {
+    grid-auto-flow: column;
+    justify-content: end;
+    gap: 22px;
+  }
+
+  .site-nav ul li {
+    border-left: 1px solid var(--color-border);
+    padding-left: 22px;
+  }
+
+  .site-nav ul li:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .lang-menu {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+
+  .ticker-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .top-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "ticker ticker"
+      "weather market";
+  }
+
+  .ticker { grid-area: ticker; }
+  .weather-box { grid-area: weather; }
+  .market-box { grid-area: market; }
+}
+
+@media (min-width: 900px) {
+  .top-row {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-areas: "ticker weather market";
+  }
+
+  .ticker { grid-area: ticker; padding: 28px 20px; }
+  .weather-box { grid-area: weather; }
+  .market-box { grid-area: market; }
+}
+
+@media (min-width: 1200px) {
+  .articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1600px) {
+  .articles-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (max-width: 500px) {
@@ -802,36 +852,6 @@ footer {
     text-align: center;
     padding: 40px 20px 20px;
   }
-
-  .footer-brand p {
-    margin: 0 auto;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-}
-/* ---------- KLEINES TABLET / GROSSES HANDY QUER (600–767px) ---------- */
-@media (min-width: 600px) and (max-width: 767px) {
-  .top-row {
-    grid-template-columns: 1fr;
-  }
-
-  .articles-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ---------- DESKTOP (ab 1200px) ---------- */
-@media (min-width: 1200px) {
-  .articles-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ---------- GROSSER DESKTOP (ab 1600px) ---------- */
-@media (min-width: 1600px) {
-  .articles-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  .footer-brand p { margin: 0 auto; }
+  .social-icons { justify-content: center; }
 }
