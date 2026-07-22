@@ -101,8 +101,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px max(20px, env(safe-area-inset-right)) 14px max(20px, env(safe-area-inset-left));
-  padding-top: max(14px, env(safe-area-inset-top));
+  padding: 10px max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
+  padding-top: max(10px, env(safe-area-inset-top));
   width: 100%;
   gap: 10px;
 }
@@ -114,7 +114,7 @@ header {
 }
 
 .logo1 {
-  height: 40px;
+  height: 32px;
   width: auto;
   display: block;
 }
@@ -279,8 +279,8 @@ header {
   grid-area: toprow;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
-  padding: 16px 20px;
+  gap: 12px;
+  padding: 12px 16px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -293,8 +293,8 @@ header {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 10px;
-  padding: 24px 16px;
+  gap: 8px;
+  padding: 16px 12px;
   border-radius: 10px;
   overflow: hidden;
   background-color: var(--color-primary-dark);
@@ -360,10 +360,10 @@ header {
   border: 1px solid var(--color-border);
   border-top: 4px solid var(--color-accent);
   border-radius: 10px;
-  padding: 18px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   min-width: 0;
   overflow: hidden;
 }
@@ -372,7 +372,7 @@ header {
 .market-box h3 {
   color: var(--color-primary);
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .weather-list,
@@ -448,7 +448,7 @@ header {
 
 main {
   grid-area: main;
-  padding: 20px;
+  padding: 14px 16px;
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
@@ -459,16 +459,16 @@ main {
   align-items: baseline;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
   border-bottom: 2px solid var(--color-primary);
 }
 
 .section-heading h2 {
   font-family: Georgia, 'Times New Roman', serif;
   color: var(--color-primary);
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .last-updated {
@@ -479,7 +479,7 @@ main {
 .articles-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 20px;
+  gap: 14px;
 }
 
 .article-card {
@@ -507,7 +507,7 @@ main {
 
 .article-card img {
   width: 100%;
-  height: 160px;
+  height: 140px;
   object-fit: cover;
   background: var(--color-border);
 }
@@ -538,23 +538,23 @@ main {
 }
 
 .article-body {
-  padding: 16px;
+  padding: 12px 14px 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   flex: 1;
   min-width: 0;
 }
 
 .article-body h3 {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--color-text);
   overflow-wrap: break-word;
 }
 
 .article-body p {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-text-muted);
   flex: 1;
   overflow-wrap: break-word;
@@ -582,10 +582,10 @@ footer {
 .footer-content {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 50px 30px 30px;
+  padding: 30px 20px 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 32px;
+  gap: 24px;
 }
 
 .footer-brand h3 {
@@ -757,13 +757,12 @@ footer {
    BREAKPOINTS
    ============================================================ */
 
-@media (max-width: 400px) {
-  .logo1 { height: 32px; }
-  .ticker { padding: 18px 12px; }
-  .ticker-text { font-size: 13px; }
-  .ticker button { padding: 4px 10px; font-size: 14px; }
-  .section-heading h2 { font-size: 17px; }
-  .article-card img { height: 130px; }
+@media (max-width: 360px) {
+  .logo1 { height: 28px; }
+  .ticker { padding: 14px 10px; }
+  .ticker-text { font-size: 12.5px; }
+  .ticker button { min-width: 34px; min-height: 34px; padding: 3px 8px; font-size: 13px; }
+  .article-card img { height: 120px; }
 }
 
 @media (max-width: 640px) {
@@ -790,10 +789,11 @@ footer {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
-    padding: 12px 20px;
+    padding: 14px 20px;
   }
 
   .header-top { padding: 0; }
+  .logo1 { height: 40px; }
 
   .burger-btn { display: none; }
 
@@ -823,6 +823,23 @@ footer {
     right: 0;
     transform: none;
   }
+
+  /* Ab Tablet wieder großzügigere Abstände/Schriften */
+  .top-row { gap: 20px; padding: 20px; }
+  .ticker { padding: 26px 20px; }
+  .weather-box, .market-box { padding: 20px; }
+  .weather-box h3, .market-box h3 { font-size: 16px; }
+
+  main { padding: 24px; }
+  .section-heading { margin-bottom: 16px; padding-bottom: 8px; }
+  .section-heading h2 { font-size: 20px; }
+  .articles-grid { gap: 20px; }
+  .article-card img { height: 170px; }
+  .article-body { padding: 16px; gap: 8px; }
+  .article-body h3 { font-size: 18px; }
+  .article-body p { font-size: 14px; }
+
+  .footer-content { padding: 50px 30px 30px; gap: 32px; }
 
   .ticker-text {
     white-space: nowrap;

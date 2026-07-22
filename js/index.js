@@ -343,7 +343,7 @@ if (articlesGrid) {
         <button class="favorite-btn ${favActive ? 'active' : ''}" aria-label="Favorit umschalten">
           ${favActive ? '★' : '☆'}
         </button>
-        ${article.image ? `<img src="${article.image}" alt="">` : ''}
+        ${article.image ? `<img src="${article.image}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}
         <div class="article-body">
           <h3>${title}</h3>
           ${summary ? `<p>${summary}</p>` : ''}
@@ -453,6 +453,7 @@ function openArticleModal(article) {
     if (article.image) {
       modalImage.src = article.image;
       modalImage.style.display = 'block';
+      modalImage.onerror = () => { modalImage.style.display = 'none'; };
     } else {
       modalImage.style.display = 'none';
     }
