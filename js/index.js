@@ -30,12 +30,6 @@ if (footerYear) {
 const THEME_KEY = 'vamos_theme';
 const themeToggle = document.getElementById('themeToggle');
 
-function updateThemeColorMeta(isDark) {
-  document.querySelectorAll('meta[name="theme-color"]').forEach(meta => {
-    meta.setAttribute('content', isDark ? '#17151a' : '#7a1f2b');
-  });
-}
-
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -43,11 +37,9 @@ if (themeToggle) {
     if (isDark) {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem(THEME_KEY, 'light');
-      updateThemeColorMeta(false);
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem(THEME_KEY, 'dark');
-      updateThemeColorMeta(true);
     }
   });
 }
@@ -351,7 +343,7 @@ if (articlesGrid) {
         <button class="favorite-btn ${favActive ? 'active' : ''}" aria-label="Favorit umschalten">
           ${favActive ? '★' : '☆'}
         </button>
-        ${article.image ? `<img src="${article.image}" alt="" loading="lazy" decoding="async">` : ''}
+        ${article.image ? `<img src="${article.image}" alt="">` : ''}
         <div class="article-body">
           <h3>${title}</h3>
           ${summary ? `<p>${summary}</p>` : ''}

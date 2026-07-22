@@ -2,19 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#7a1f2b" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#17151a" media="(prefers-color-scheme: dark)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vamos Newspaper</title>
     <link rel="stylesheet" href="css/index.css">
     <script>
       // Vor dem Rendern ausführen, damit die Seite nicht kurz hell aufblitzt
       (function () {
         const saved = localStorage.getItem('vamos_theme');
-        if (saved === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.setAttribute('content', '#17151a'));
-        }
+        if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
       })();
     </script>
     <script src="js/index.js" defer></script>
