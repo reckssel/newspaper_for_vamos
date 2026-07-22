@@ -5,6 +5,39 @@
 // ============================================================
 
 
+// ---------- Language switch (EN/ES) ----------
+
+const langSwitch = document.querySelector('.lang-switch');
+const langBtn = document.querySelector('.lang-btn');
+
+if (langSwitch && langBtn) {
+
+  langBtn.addEventListener('click', () => {
+    langSwitch.classList.toggle('open');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!langSwitch.contains(e.target)) {
+      langSwitch.classList.remove('open');
+    }
+  });
+
+  document.querySelectorAll('.lang-menu a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const lang = link.dataset.lang; // "en" or "es"
+
+      document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+        el.textContent = el.dataset[lang];
+      });
+
+      document.documentElement.lang = lang;
+      langSwitch.classList.remove('open');
+    });
+  });
+}
+
+
 // ---------- Dark Mode ----------
 
 const THEME_KEY = 'vamos_theme';

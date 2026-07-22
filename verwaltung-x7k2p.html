@@ -21,11 +21,12 @@
   <!-- Login screen: shown until logged in -->
   <div class="login-gate" id="loginGate">
     <form class="login-box" id="loginForm">
-      <h1>Admin</h1>
-      <p class="admin-hint">Please enter the password.</p>
+      <img class="login-logo" src="images/Spanglish_Logo.png" alt="Vamos Newspaper">
+      <h1 data-en="Admin" data-es="Administración">Admin</h1>
+      <p class="admin-hint" data-en="Please enter the password." data-es="Por favor, introduce la contraseña.">Please enter the password.</p>
       <input type="password" id="loginPassword" placeholder="Password" required autofocus>
-      <button type="submit" class="submit-btn">Log in</button>
-      <p class="login-error" id="loginError" hidden>Wrong password.</p>
+      <button type="submit" class="submit-btn" data-en="Log in" data-es="Iniciar sesión">Log in</button>
+      <p class="login-error" id="loginError" hidden data-en="Wrong password." data-es="Contraseña incorrecta.">Wrong password.</p>
     </form>
   </div>
 
@@ -33,92 +34,112 @@
   <div id="adminContent" hidden>
 
     <header class="admin-header">
-      <div class="logo">Logo <span class="admin-tag">Admin</span></div>
+      <div class="logo">
+        <img class="logo1" src="images/Spanglish_Logo.png" alt="Vamos Newspaper">
+        <span class="admin-tag">Admin</span>
+      </div>
       <div class="header-actions">
+        <div class="lang-switch">
+          <button class="lang-btn" type="button" data-en="English ▾" data-es="Español ▾">English ▾</button>
+          <ul class="lang-menu">
+            <li><a href="#" data-lang="en">English</a></li>
+            <li><a href="#" data-lang="es">Español</a></li>
+          </ul>
+        </div>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
           <span class="theme-icon-light">☀️</span>
           <span class="theme-icon-dark">🌙</span>
         </button>
-        <a href="index.html" class="back-link">← Back to website</a>
-        <button id="logoutBtn" class="logout-btn" type="button">Log out</button>
+        <a href="index.html" class="back-link" data-en="← Back to website" data-es="← Volver al sitio">← Back to website</a>
+        <button id="logoutBtn" class="logout-btn" type="button" data-en="Log out" data-es="Cerrar sesión">Log out</button>
       </div>
     </header>
 
     <main class="admin-main">
+      <div class="admin-grid">
 
-      <section class="admin-panel">
-        <h1>Add new article</h1>
-        <p class="admin-hint">
-          New articles are first saved only in <strong>your browser</strong> (localStorage).
-          For them to become visible to <strong>all</strong> visitors, click
-          "Export JSON" below and paste the code into your <code>news.json</code> file.
-        </p>
+        <section class="admin-panel admin-panel--form">
+          <h1 data-en="Add new article" data-es="Añadir nuevo artículo">Add new article</h1>
+          <p class="admin-hint"
+             data-en="New articles are first saved only in your browser (localStorage). For them to become visible to all visitors, click 'Export JSON' below and paste the code into your news.json file."
+             data-es="Los nuevos artículos se guardan primero solo en tu navegador (localStorage). Para que sean visibles a todos los visitantes, haz clic en 'Exportar JSON' abajo y pega el código en tu archivo news.json.">
+            New articles are first saved only in <strong>your browser</strong> (localStorage).
+            For them to become visible to <strong>all</strong> visitors, click
+            "Export JSON" below and paste the code into your <code>news.json</code> file.
+          </p>
 
-        <form id="articleForm" class="article-form">
+          <form id="articleForm" class="article-form">
 
-          <div class="form-row">
-            <label for="category">Category</label>
-            <select id="category" required>
-              <option value="argentina">Argentina</option>
-              <option value="spain">Spain</option>
-            </select>
-          </div>
+            <div class="form-row">
+              <label for="category" data-en="Category" data-es="Categoría">Category</label>
+              <select id="category" required>
+                <option value="argentina" data-en="Argentina" data-es="Argentina">Argentina</option>
+                <option value="spain" data-en="Spain" data-es="España">Spain</option>
+              </select>
+            </div>
 
-          <div class="form-row">
-            <label for="image">Image path or URL</label>
-            <input type="text" id="image" placeholder="images/my-image.jpg">
-          </div>
+            <div class="form-row">
+              <label for="image" data-en="Image path or URL" data-es="Ruta de imagen o URL">Image path or URL</label>
+              <input type="text" id="image" placeholder="images/my-image.jpg">
+            </div>
 
-          <div class="form-row">
-            <label for="date">Date &amp; time</label>
-            <input type="datetime-local" id="date" required>
-          </div>
+            <div class="form-row">
+              <label for="date" data-en="Date &amp; time" data-es="Fecha y hora">Date &amp; time</label>
+              <input type="datetime-local" id="date" required>
+            </div>
 
-          <fieldset class="lang-fieldset">
-            <legend>Title</legend>
-            <input type="text" id="title-de" placeholder="Title (German)" required>
-            <input type="text" id="title-en" placeholder="Title (English)" required>
-            <input type="text" id="title-es" placeholder="Title (Spanish)" required>
-          </fieldset>
+            <fieldset class="lang-fieldset">
+              <legend data-en="Title" data-es="Título">Title</legend>
+              <input type="text" id="title-de" placeholder="Title (German)" required>
+              <input type="text" id="title-en" placeholder="Title (English)" required>
+              <input type="text" id="title-es" placeholder="Title (Spanish)" required>
+            </fieldset>
 
-          <fieldset class="lang-fieldset">
-            <legend>Summary (shown on the article card)</legend>
-            <textarea id="summary-de" rows="2" placeholder="Summary (German)" required></textarea>
-            <textarea id="summary-en" rows="2" placeholder="Summary (English)" required></textarea>
-            <textarea id="summary-es" rows="2" placeholder="Summary (Spanish)" required></textarea>
-          </fieldset>
+            <fieldset class="lang-fieldset">
+              <legend data-en="Summary (shown on the article card)" data-es="Resumen (se muestra en la tarjeta del artículo)">Summary (shown on the article card)</legend>
+              <textarea id="summary-de" rows="2" placeholder="Summary (German)" required></textarea>
+              <textarea id="summary-en" rows="2" placeholder="Summary (English)" required></textarea>
+              <textarea id="summary-es" rows="2" placeholder="Summary (Spanish)" required></textarea>
+            </fieldset>
 
-          <fieldset class="lang-fieldset">
-            <legend>Full text (shown in the detail popup)</legend>
-            <textarea id="content-de" rows="4" placeholder="Full article text (German)"></textarea>
-            <textarea id="content-en" rows="4" placeholder="Full article text (English)"></textarea>
-            <textarea id="content-es" rows="4" placeholder="Full article text (Spanish)"></textarea>
-          </fieldset>
+            <fieldset class="lang-fieldset">
+              <legend data-en="Full text (shown in the detail popup)" data-es="Texto completo (se muestra en la ventana de detalle)">Full text (shown in the detail popup)</legend>
+              <textarea id="content-de" rows="4" placeholder="Full article text (German)"></textarea>
+              <textarea id="content-en" rows="4" placeholder="Full article text (English)"></textarea>
+              <textarea id="content-es" rows="4" placeholder="Full article text (Spanish)"></textarea>
+            </fieldset>
 
-          <button type="submit" class="submit-btn">Add article</button>
-        </form>
-      </section>
+            <button type="submit" class="submit-btn" data-en="✓ Add article" data-es="✓ Añadir artículo">✓ Add article</button>
+          </form>
+        </section>
 
-      <section class="admin-panel">
-        <div class="panel-heading">
-          <h2>Article overview</h2>
-          <button id="exportBtn" class="export-btn" type="button">Export JSON</button>
+        <div class="admin-panel--side">
+
+          <section class="admin-panel">
+            <div class="panel-heading">
+              <h2 data-en="Article overview" data-es="Resumen de artículos">Article overview</h2>
+              <button id="exportBtn" class="export-btn" type="button" data-en="Export JSON" data-es="Exportar JSON">Export JSON</button>
+            </div>
+
+            <div id="articlesList" class="admin-articles-list">
+              <!-- filled in by JS -->
+            </div>
+          </section>
+
+          <section class="admin-panel" id="exportSection" hidden>
+            <div class="panel-heading">
+              <h2 data-en="Export" data-es="Exportar">Export</h2>
+              <button id="copyBtn" class="export-btn" type="button" data-en="Copy to clipboard" data-es="Copiar al portapapeles">Copy to clipboard</button>
+            </div>
+            <p class="admin-hint"
+             data-en="Paste this entire content into your news.json file (replacing the old content):"
+             data-es="Pega todo este contenido en tu archivo news.json (reemplazando el contenido anterior):">Paste this entire content into your <code>news.json</code> file (replacing the old content):</p>
+            <textarea id="exportOutput" class="export-output" rows="14" readonly></textarea>
+          </section>
+
         </div>
 
-        <div id="articlesList" class="admin-articles-list">
-          <!-- filled in by JS -->
-        </div>
-      </section>
-
-      <section class="admin-panel" id="exportSection" hidden>
-        <div class="panel-heading">
-          <h2>Export</h2>
-          <button id="copyBtn" class="export-btn" type="button">Copy to clipboard</button>
-        </div>
-        <p class="admin-hint">Paste this entire content into your <code>news.json</code> file (replacing the old content):</p>
-        <textarea id="exportOutput" class="export-output" rows="14" readonly></textarea>
-      </section>
-
+      </div>
     </main>
 
   </div>
