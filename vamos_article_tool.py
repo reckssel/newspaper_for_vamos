@@ -30,7 +30,7 @@ from tkinter import ttk, filedialog, messagebox, scrolledtext
 from datetime import datetime
 from pathlib import Path
 
-CONFIG_FILE = Path(__file__).parent / ".vamos_admin_config.json"
+CONFIG_FILE = Path.home() / ".vamos_admin_config.json"
 BRANCH = "main"
 
 
@@ -47,10 +47,10 @@ def load_repo_path():
         except Exception:
             pass
 
-    # Fallback: the script is presumably inside the repo itself
-    default = Path(__file__).parent
-    if (default / "news.json").exists():
-        return default
+    # Fallback: the script/app is presumably placed inside the repo itself
+    own_folder = Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(__file__).parent
+    if (own_folder / "news.json").exists():
+        return own_folder
 
     return None
 
